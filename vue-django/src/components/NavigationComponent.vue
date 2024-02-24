@@ -1,9 +1,9 @@
 <template>
     <section class="mt-5 text-center mx-auto">
-        <h1 class="text-danger">Panaderia Osedy</h1>
-        <img class="img-fluid" :src="require('@/assets/img/principal.png')" alt="">
+        <h1 class="text-success">Panaderia y Pasteleria Peter Pan</h1>
+        <img class="img-fluid" :src="require('@/assets/img/logo.png')" alt="">
         <div class="mt-3" v-if="$route.path !== '/about'">
-            <button type="button" class="btn btn-warning" v-for="category in categories" :key="category.id">{{ category.name
+            <button type="button" class="btn btn-success" v-for="category in categories" :key="category.id" @click ="getCategoryID(category.id,category.name)" >{{ category.name
             }}</button>
 
         </div>
@@ -19,7 +19,14 @@ export default {
 
     data() {
         return {
-            categories: []
+            categories: [],
+            categoryID: null,
+            categoryName: null
+        }
+    },
+    methods: {
+        getCategoryID(categoryID, categoryName) {
+            this.$emit('getCategoryID', categoryID,categoryName);
         }
     },
     mounted() {

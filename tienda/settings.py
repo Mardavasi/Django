@@ -40,7 +40,8 @@ BASE_APPS = [
 ]
 THIRDS_APPS = [
     'rest_framework',  
-    'corsheaders', 
+    'corsheaders',
+    'django_filters', 
 ]
 OWN_APPS = [
     'products',
@@ -73,6 +74,10 @@ CORS_ALLOW_METHODS = [
     'POST',
     'PUT',  
 ]
+#agregamos django_filters para poder filtrar los productos por categoria
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+}
 
 ROOT_URLCONF = 'tienda.urls'
 

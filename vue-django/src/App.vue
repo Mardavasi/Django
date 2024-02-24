@@ -4,7 +4,7 @@
     <navbar-component></navbar-component>
 
     <!--section-->
-    <navigation-component></navigation-component>
+    <navigation-component v-if="$route.path ==='/about'"></navigation-component>
 
     <router-view />
     <!--footer-->
