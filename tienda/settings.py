@@ -39,7 +39,8 @@ BASE_APPS = [
     'django.contrib.staticfiles',
 ]
 THIRDS_APPS = [
-    'rest_framework',   
+    'rest_framework',  
+    'corsheaders', 
 ]
 OWN_APPS = [
     'products',
@@ -55,6 +56,22 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+]
+CORS_ALLOW_ALL_ORIGINS = True
+#instalamos corsheaders para perm,itir el acceso a la api desde cualquier origen 
+CORS_ALLOWED_ALL_ORIGINS = [
+    'http://localhost:8080',
+    'http://127.0.0.1:8080',
+]
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',  
 ]
 
 ROOT_URLCONF = 'tienda.urls'
