@@ -17,9 +17,9 @@
           </li>
 
         </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Buscar</button>
+        <form class="d-flex" role="search" @submit.prevent="submitForm" v-if="$route.path === '/'">
+          <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search" v-model="searchText">
+          <button class="btn btn-outline-success" type="submit" @click="getSearch">Buscar</button>
         </form>
 
       </div>
@@ -27,8 +27,19 @@
   </nav>
 </template>
 
-<script>
-export default {
-  name: 'NavbarComponent'
+<script setup>
+// Importación de funciones y objetos necesarios desde Vue
+import { ref, defineEmits } from 'vue';
+
+// Creación de una referencia reactiva para el texto de búsqueda
+const searchText = ref('');
+
+// Definición de eventos emitidos usando defineEmits
+const emitSearch = defineEmits(['getSearchText']);
+
+// Función para obtener el texto de búsqueda y emitir un evento
+const getSearch = () => {
+  // Emite el evento 'getSearchText' con el valor actual de searchText
+  emitSearch('getSearchText', searchText.value);
 }
 </script>

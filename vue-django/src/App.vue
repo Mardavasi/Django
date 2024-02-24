@@ -1,31 +1,24 @@
 <template>
   <div class="container">
     <!--navbar-->
-    <navbar-component></navbar-component>
+    <navbar-component v-if="$route.path != '/'"/>
 
     <!--section-->
-    <navigation-component v-if="$route.path ==='/about'"></navigation-component>
+    <navigation-component v-if="$route.path ==='/about'"/>
 
     <router-view />
     <!--footer-->
 
-    <footer-component></footer-component>
+    <footer-component/>
 
   </div>
 </template>
-<script>
+<script setup>
 import FooterComponent from './components/FooterComponent.vue'
 import NavbarComponent from './components/NavbarComponent.vue'
 import NavigationComponent from './components/NavigationComponent.vue'
 
-export default {
-  name: 'App',
-  components: {
-    FooterComponent,
-    NavbarComponent,
-    NavigationComponent
-  }
-}
+
 </script>
 
 <style>

@@ -15,9 +15,15 @@ class productViewSet(viewsets.ModelViewSet):
     #modificamos el metodo get_queryset para poder filtrar los productos por categoria
     def get_queryset(self):
         queryset = super().get_queryset()
+        #filtrado por categoria
         category = self.request.query_params.get('category')
         if category:
             queryset = queryset.filter(category=category)
+        #filtrado por nombre
+        search = self.request.query_params.get('search')   
+        if search is not None:
+            queryset = queryset.filter(name__icontains=search) | queryset.filter(description__icontains=search)
+            
         return queryset
     
     # @action(detail=False)
